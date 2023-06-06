@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import './app.css'
+import * as C from './styles'
+import Arrow from "./components/Arrow";
+import AboutMe from "./components/AboutMe";
+import Repos from "./components/Repos";
 
 function App() {
+  const handleScrollToAbout = () => {
+    const posicaoDesejada = document.getElementById('about').offsetTop;
+    const opcoesRolagem = {
+      top: posicaoDesejada,
+      behavior: 'smooth'
+    };
+    window.scrollTo(opcoesRolagem);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <C.Container>  
+      <C.FirstView>
+        <Header/>
+        <Arrow onClick={handleScrollToAbout} />
+      </C.FirstView>
+      <C.Content id="about">
+        <AboutMe />
+        <C.Space/>
+        <C.Text> Projetos </C.Text>
+        <C.Space/>
+        <Repos/>
+      </C.Content>
+    </C.Container>   
   );
 }
 
